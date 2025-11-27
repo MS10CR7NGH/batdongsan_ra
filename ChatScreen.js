@@ -1,5 +1,5 @@
 // ChatScreen.js
-import React, { useState } from 'react';
+import React, { useState, useRef  } from 'react';
 import {
   View,
   Text,
@@ -23,6 +23,11 @@ export default function ChatScreen() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // conversationId cố định cho cả phiên chat này
+  const conversationIdRef = useRef(
+    'mobile-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+  );
+
   const handleSend = async () => {
     const trimmed = input.trim();
     if (!trimmed || loading) return;
@@ -43,7 +48,7 @@ export default function ChatScreen() {
       const res = await fetch(`${API_BASE_URL}/customer/chat-ai`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed }),
+        body: JSON.stringify({ conversationId: conversationIdRef.current ,message: trimmed }),
       });
 
       const replyText = await res.text(); // backend trả String
