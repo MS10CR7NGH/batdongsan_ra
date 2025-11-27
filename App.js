@@ -9,6 +9,8 @@ import SearchBuildingScreen from './SearchBuildingScreen';
 // iOS simulator:     'http://localhost:8080'
 // Điện thoại thật:   'http://IP_LAN_MAY_TINH:8080'
 export const API_BASE_URL = 'http://192.168.1.47:8081';
+//export const CHAT_API_BASE_URL = 'http://192.168.1.47:5000';
+
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
