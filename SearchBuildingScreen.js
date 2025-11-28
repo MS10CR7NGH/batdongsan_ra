@@ -13,6 +13,8 @@ import {
 import { API_BASE_URL } from './App';
 import BuildingDetailScreen from './BuildingDetailScreen';
 import ChatScreen from './ChatScreen';
+import AccountScreen from './AccountScreen';
+
 
 
 const DEFAULT_AVATAR =
@@ -161,7 +163,7 @@ export default function SearchBuildingScreen({ token }) {
 
   return (
   <View style={styles.searchScreenContainer}>
-    {activeTab === 'search' ? (
+    {activeTab === 'search' && (
       <>
         {/* HEADER ĐỎ + SEARCH BAR */}
         <View style={styles.header}>
@@ -243,11 +245,17 @@ export default function SearchBuildingScreen({ token }) {
           }
         />
       </>
-    ) : (
-      // Tab Chat AI – bọc thêm View flex:1
+    )}
+    {/* Tab Chat AI */}
+    {activeTab === 'chat' && (
       <View style={{ flex: 1 }}>
         <ChatScreen />
       </View>
+    )}
+
+    {/* Tab Tài khoản */}
+    {activeTab === 'account' && (
+      <AccountScreen token={token} />
     )}
 
     {/* THANH MENU DƯỚI */}
@@ -268,7 +276,9 @@ export default function SearchBuildingScreen({ token }) {
         <Text style={styles.bottomLabel}>Chat AI</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.bottomItem}>
+      <TouchableOpacity style={styles.bottomItem}
+        onPress={() => setActiveTab('account')}
+      >
         <Text style={styles.bottomIcon}>👤</Text>
         <Text style={styles.bottomLabel}>Tài khoản</Text>
       </TouchableOpacity>
@@ -276,106 +286,6 @@ export default function SearchBuildingScreen({ token }) {
   </View>
 );
 
-
-  // return (
-  //   <View style={styles.searchScreenContainer}>
-  //     {/* HEADER ĐỎ + SEARCH BAR */}
-  //     <View style={styles.header}>
-  //       <Text style={styles.headerTime}>TowerHub</Text>
-
-  //       <View style={styles.searchBar}>
-  //         <TextInput
-  //           style={styles.searchInput}
-  //           placeholder="Chung cư Vinhomes 2 ngủ"
-  //           placeholderTextColor="#999"
-  //           value={name}
-  //           onChangeText={setName}
-  //         />
-  //         <TouchableOpacity style={styles.filterButton} onPress={handleSearch}>
-  //           <Text style={styles.filterIcon}>🔍</Text>
-  //         </TouchableOpacity>
-  //       </View>
-
-  //       <View style={styles.filterRow}>
-  //         <TextInput
-  //           style={styles.filterInput}
-  //           placeholder="Quận / Huyện"
-  //           value={district}
-  //           onChangeText={setDistrict}
-  //         />
-  //         <TextInput
-  //           style={styles.filterInput}
-  //           placeholder="Phường / Xã"
-  //           value={ward}
-  //           onChangeText={setWard}
-  //         />
-  //       </View>
-
-  //       <View style={styles.filterRow}>
-  //         <TextInput
-  //           style={styles.filterInput}
-  //           placeholder="Đường"
-  //           value={street}
-  //           onChangeText={setStreet}
-  //         />
-  //         <TextInput
-  //           style={styles.filterInput}
-  //           placeholder="Giá thuê từ (đ)"
-  //           value={rentPriceFrom}
-  //           onChangeText={setRentPriceFrom}
-  //           keyboardType="numeric"
-  //         />
-  //       </View>
-
-  //       <TouchableOpacity
-  //         style={[styles.button, styles.searchButton]}
-  //         onPress={handleSearch}
-  //         disabled={loading}
-  //       >
-  //         {loading ? (
-  //           <ActivityIndicator />
-  //         ) : (
-  //           <Text style={styles.buttonText}>Tìm kiếm</Text>
-  //         )}
-  //       </TouchableOpacity>
-
-  //       {error ? <Text style={styles.errorText}>{error}</Text> : null}
-  //     </View>
-
-  //     {/* DANH SÁCH TÒA NHÀ */}
-  //     <FlatList
-  //       data={buildings}
-  //       keyExtractor={(item, index) =>
-  //         item.id ? String(item.id) : String(index)
-  //       }
-  //       renderItem={renderItem}
-  //       contentContainerStyle={styles.listContent}
-  //       ListEmptyComponent={
-  //         !loading && (
-  //           <Text style={styles.emptyText}>
-  //             Nhập tiêu chí và bấm "Tìm kiếm" để xem danh sách tòa nhà.
-  //           </Text>
-  //         )
-  //       }
-  //     />
-
-  //     {/* THANH MENU DƯỚI */}
-  //     <View style={styles.bottomBar}>
-  //       <TouchableOpacity style={styles.bottomItem}>
-  //         <Text style={styles.bottomIcon}>🔍</Text>
-  //         <Text style={styles.bottomLabel}>Tìm kiếm</Text>
-  //       </TouchableOpacity>
-  //       <TouchableOpacity style={styles.bottomItem}>
-  //         <Text style={styles.bottomIcon}>❤</Text>
-  //         <Text style={styles.bottomLabel}>Tin đã lưu</Text>
-  //       </TouchableOpacity>
-  //       <TouchableOpacity style={styles.bottomItem}>
-  //         <Text style={styles.bottomIcon}>👤</Text>
-  //         <Text style={styles.bottomLabel}>Tài khoản</Text>
-  //       </TouchableOpacity>
-  //     </View>
-  //   </View>
-  // );
 }
 
 const styles = StyleSheet.create({

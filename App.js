@@ -8,7 +8,7 @@ import SearchBuildingScreen from './SearchBuildingScreen';
 // Android emulator:  'http://10.0.2.2:8080'
 // iOS simulator:     'http://localhost:8080'
 // Điện thoại thật:   'http://IP_LAN_MAY_TINH:8080'
-export const API_BASE_URL = 'http://192.168.1.47:8081';
+export const API_BASE_URL = 'http://192.168.1.66:8081';
 //export const CHAT_API_BASE_URL = 'http://192.168.1.47:5000';
 
 

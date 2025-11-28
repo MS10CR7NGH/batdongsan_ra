@@ -33,7 +33,7 @@ export default function LoginScreen({ onLoginSuccess }) {
         },
         body:
           `phone=${encodeURIComponent(phone)}` +
-          `&fullName=${encodeURIComponent(password)}`,
+          `&demand=${encodeURIComponent(password)}`,
       });
 
       if (!response.ok) {
